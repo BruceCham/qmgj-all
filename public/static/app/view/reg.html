@@ -1,0 +1,50 @@
+<div class="qmgj-p-login">
+	<div class="login-box">
+		<div class="form-box">
+			<h1 class="form-type">注册</h1>
+			<form action="" name="loginForm" ng-model="loginForm">
+				<div class="form-item">
+					<input name="username" ng-model="username" type="text" placeholder="请输入用户名" required>
+					<div class="form-error" ng-show="loginForm.username.$invalid && loginForm.username.$dirty">请输入用户名</div>
+				</div>
+
+				<div class="form-item">
+					<input name="phone" ng-model="phone" type="text" placeholder="请输入您的手机号" ng-pattern='/^(1[35678][0-9]{9})$/' required>
+					<div class="form-error" ng-show="loginForm.phone.$invalid && loginForm.phone.$dirty">您输入的号码有误，请检查</div>
+				</div>
+
+				<div class="form-item">
+					<input name="pwd" ng-model="pwd" type="password" placeholder="请输入密码" required ng-minlength="6">
+					<div class="form-error" ng-show="loginForm.pwd.$invalid && loginForm.pwd.$dirty">请输入六位以上密码</div>
+				</div>
+
+				<div class="form-item">
+					<input name="pwd2" ng-model="pwd2" type="password" placeholder="请输入密码">
+					<div class="form-error" ng-show="loginForm.pwd2.$dirty && pwd2!=pwd">输入的密码不一致</div>
+				</div>
+
+				<div class="form-btn" ng-class="{active:loginForm.$valid&&pwd2==pwd}" ng-click="userReg( loginForm.$valid&&pwd2==pwd )">注册</div>
+
+				<div class="form-choice clearfix">
+					<div class="form-img"></div>
+					<span>同意《全民共进协议》</span>
+				</div>
+				
+				<div class="form-three">
+					<h1 class="form-t-title">
+						<div>第三方登录</div>
+					</h1>
+					<div class="form-t-icon">
+						<span class="icon icon-weixin"></span>
+						<span class="icon icon-qq"></span>
+						<span class="icon icon-sina"></span>
+					</div>
+				</div>
+
+			</form>
+		</div>
+		<div class="form-footer">
+			<span>已有账户<a ui-sref="login">登录</a></span>
+		</div>
+	</div>
+</div>

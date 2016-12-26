@@ -1,0 +1,41 @@
+.vip-info-box {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    padding: 30px 35px 15px;
+    margin-bottom: 15px;
+    .info-group {
+        margin-bottom: 20px;
+        legend {
+            float: left;
+            width: 80px;
+            margin-right: 20px;
+            text-align: right;
+        }
+        input{
+        	border: 1px solid #dcdcdd;
+        	border-radius: 2px;
+        }
+        &.userimg {
+            input {
+                width: 70px;
+                height: 70px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                opacity: 0;
+                filter:alpha(opacity=0);
+            }
+        }
+        .info-item {
+            float: left;
+            position: relative;
+            .fileup {
+                width: 70px;
+                height: 70px;
+                background: url(images/sprite-list.png);
+                background-position: 0 0;
+            }
+        }
+    }
+}

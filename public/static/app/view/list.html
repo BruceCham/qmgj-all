@@ -1,0 +1,67 @@
+<div class="qmgj-p-list">
+    <!-- 筛选区 -->
+    <div class="filter-box">
+        <div class="filter-group">
+            <div class="filter-item">
+                <span ng-repeat="obj in proTypes" ng-click="filterData($event,0)" ng-class="{active:choiceType==obj.type}" data="{{obj.type}}">{{obj.name}}</span>
+            </div>
+            <div class="filter-item">
+                <span ng-repeat="obj in proState" ng-click="filterData($event,1)" ng-class="{active:choiceState==obj.type}" data="{{obj.type}}">{{obj.name}}</span>
+            </div>
+            <div class="filter-item">
+                <span ng-repeat="obj in proTime" ng-click="filterData($event,2)" ng-class="{active:choiceTime==obj.type}" data="{{obj.type}}">{{obj.name}}</span>
+            </div>
+        </div>
+    </div>
+    <!-- 展示区 -->
+    <div class="show-box">
+        <!-- 展示内容 -->
+        <div class="tvList clearfix">
+            <section ng-repeat="obj in proDatas">
+                <div class="tvItem">
+                    <img ng-src="{{obj.imgSrc}}" alt="">
+                    <div class="itemInfo">
+                        <h1 class="infoH1">{{obj.proName}}</h1>
+                        <h4 class="infoH4">by {{obj.proCon}}</h4>
+                        <p class="infoP">{{obj.proInfo}}</p>
+                        <div>
+                            <span class="tv tv1" ng-repeat="o in proTypes|filter:{type:obj.proType}">{{o.name}}</span>
+                            <span class="tv tv2">卫视推荐</span>
+                        </div>
+                        <!-- 进度条 -->
+                        <div class="process">
+                            <div class="processChild" style="width: {{obj.proProcess}};"></div>
+                        </div>
+                        <div class="ulList">
+                            <ul class="clearfix ul1">
+                                <li class="w1">{{obj.proProcess}}</li>
+                                <li class="w2">{{obj.proMoney|currency}}</li>
+                                <li class="w1">{{obj.proPeople}}</li>
+                                <li class="w1">{{obj.proDays}}</li>
+                            </ul>
+                            <ul class="clearfix">
+                                <li class="w1">进度</li>
+                                <li class="w2">支持金额
+                                </li>
+                                <li class="w1">支持者
+                                </li>
+                                <li class="w1">剩余天数</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- 翻页区 -->
+        <section class="page-group">
+        	<span class="page active">1</span>
+        	<span class="page">2</span>
+        	<span class="page">3</span>
+        	<span class="page">4</span>
+        	<span class="page">5</span>
+        	<span class="omit">...</span>
+        	<span class="page">></span>
+        	<span class="word">页尾</span>
+        </section>
+    </div>
+</div>

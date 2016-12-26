@@ -1,0 +1,46 @@
+{
+    "resultCode": "0000",
+    "result": {
+        "proTypes": [{
+            "name": "全部",
+            "type": "0"
+        }, {
+            "name": "微电影",
+            "type": "1"
+        }, {
+            "name": "电影",
+            "type": "2"
+        }, {
+            "name": "话剧",
+            "type": "3"
+        }, {
+            "name": "戏曲",
+            "type": "4"
+        }],
+        "proState": [{
+            "name": "筹资中",
+            "type": "0"
+        }, {
+            "name": "即将结束",
+            "type": "1"
+        }, {
+            "name": "已成功",
+            "type": "2"
+        }],
+        "proTime": [{
+            "name": "最新",
+            "type": "0"
+        }, {
+            "name": "热门",
+            "type": "1"
+        }, {
+            "name": "结束时间",
+            "type": "2"
+        }],
+        "data": [{ "imgSrc": "static/app/images/hot1.jpg", "proName": "《晚秋》再现江湖", "proCon": "蓝宝公司劳斯莱斯", "proInfo": "超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司", "proType": 1, "proProcess": "46%", "proMoney": "1234", "proPeople": "123", "proDays": "12" }, { "imgSrc": "static/app/images/hot1.jpg", "proName": "《封神传奇》再现江湖", "proCon": "中国星", "proInfo": "超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司", "proType": 2, "proProcess": "12%", "proMoney": "3789", "proPeople": "323", "proDays": "22" }, { "imgSrc": "static/app/images/hot1.jpg", "proName": "《超脑特工》再现江湖", "proCon": "东印度", "proInfo": "超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司", "proType": 0, "proProcess": "50%", "proMoney": "1423", "proPeople": "1223", "proDays": "5" }],
+        "choiceType": 1,
+        "choiceState": 0,
+        "choiceTime": 1
+    },
+    "resultMsg": "请求成功"
+}

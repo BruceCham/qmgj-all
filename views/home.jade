@@ -1,0 +1,40 @@
+doctype html
+html(ng-app="qmgj_login")
+  head
+    title 全民共进
+    meta(charset="utf-8")
+    link(rel="stylesheet",href="static/app/app.min.css")
+    script(src="static/app/bower_components/angular/angular.js")
+    script(src="static/app/bower_components/angular-ui-router/release/angular-ui-router.js")
+    script(src="static/app/app.min.js")
+  body
+    header
+      div.header-box.fn-clear(ng-controller="userController")
+        ul.fn-clear
+          li.logoBox
+            span.cl1 全民
+            span.cl2 共进
+          a(ui-sref="home")
+            li.active.nav(ui-sref-active="active") 首页
+          li.nav 节目专栏
+          li.nav 圈子
+          li.search
+            input(placeholder="请输入查找内容")
+        div.loginBox
+          a(ui-sref="vip.main")= username
+          a(ng-click="userLogout()") 退出
+    div(ui-view)
+    footer
+      div.navList.clearfix
+        div.navleft
+          span 关于全民共进
+          span |
+          span 全民共进用户协议
+          span |
+          span 全民共进风险提示
+          span |
+          span 联系我们
+        div.navright
+          span.navcl1 全民
+          span.navcl2 共进
+          span  ©2015

@@ -1,0 +1,237 @@
+<div>
+    <!-- 轮播图 -->
+    <div class="slideBox">
+        <a href="#/detail/{{obj.proId}}" ng-repeat="obj in slideImg" ng-style="{zIndex:showIndex==$index?1:0}">
+            <img ng-src="{{obj.proImg}}" alt="">
+        </a>
+        <div class="slidePoint">
+            <span ng-repeat="obj in slideImg" ng-class="{active:showIndex==$index}" ng-click="showCurrentFn($index)"></span>
+        </div>
+    </div>
+    <!-- 热门项目 -->
+    <div class="hotBox clearfix">
+        <!-- 左边内容 -->
+        <div class="hotLeft">
+            <h1 class="hotTitle">热门项目<a ui-sref="list">查看更多</a></h1>
+            <section class="clearfix">
+                <!-- 图片显示 -->
+                <img ng-src="{{showPro.imgSrc}}" alt="">
+                <!-- 文字说明 -->
+                <div class="hotInfo">
+                    <h1 class="infoH1">{{showPro.proName}}</h1>
+                    <h4 class="infoH4">by {{showPro.proCon}}</h4>
+                    <p class="infoP">{{showPro.proInfo}}</p>
+                    <div>
+                        <span class="tv tv1">{{prosType[showPro.proType]}}</span>
+                        <span class="tv tv2">卫视推荐</span>
+                    </div>
+                    <!-- 进度条 -->
+                    <div class="process">
+                        <div class="processChild" style="width: {{showPro.proProcess}};"></div>
+                    </div>
+                    <div class="ulList">
+                        <ul class="clearfix ul1">
+                            <li class="w1">{{showPro.proProcess}}</li>
+                            <li class="w2">{{showPro.proMoney|currency}}</li>
+                            <li class="w1">{{showPro.proPeople}}</li>
+                            <li class="w1">{{showPro.proDays}}</li>
+                        </ul>
+                        <ul class="clearfix">
+                            <li class="w1">进度</li>
+                            <li class="w2">支持金额
+                            </li>
+                            <li class="w1">支持者
+                            </li>
+                            <li class="w1">剩余天数</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- 右边导航 -->
+        <div class="hotRight">
+            <ul>
+                <li ng-repeat="name in prosType" ng-class="{active:showProIndex==$index}" ng-click="showProFn($index)">{{name}}</li>
+            </ul>
+        </div>
+    </div>
+    <!-- 卫视主推 -->
+    <div class="tvMain">
+        <h1 class="tvmainTitle clearfix">
+                <div>卫视主推</div>
+                <a ui-sref="list">查看更多</a>
+            </h1>
+        <div class="tvList clearfix">
+            <section>
+                <div class="tvItem">
+                    <img src="static/app/images/tvlist.jpg" alt="">
+                    <div class="itemInfo">
+                        <h1 class="infoH1">《晚秋》再现江湖</h1>
+                        <h4 class="infoH4">by 蓝宝公司劳斯莱斯</h4>
+                        <p class="infoP">超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司</p>
+                        <div>
+                            <span class="tv tv1">话剧</span>
+                            <span class="tv tv2">卫视推荐</span>
+                        </div>
+                        <!-- 进度条 -->
+                        <div class="process">
+                            <div class="processChild" style="width: 20%;"></div>
+                        </div>
+                        <div class="ulList">
+                            <ul class="clearfix ul1">
+                                <li class="w1">48%</li>
+                                <li class="w2">$ 123</li>
+                                <li class="w1">123</li>
+                                <li class="w1">123</li>
+                            </ul>
+                            <ul class="clearfix">
+                                <li class="w1">进度</li>
+                                <li class="w2">支持金额
+                                </li>
+                                <li class="w1">支持者
+                                </li>
+                                <li class="w1">剩余天数</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="tvItem">
+                    <img src="static/app/images/tvlist.jpg" alt="">
+                    <div class="itemInfo">
+                        <h1 class="infoH1">《晚秋》再现江湖</h1>
+                        <h4 class="infoH4">by 蓝宝公司劳斯莱斯</h4>
+                        <p class="infoP">超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司</p>
+                        <div>
+                            <span class="tv tv1">话剧</span>
+                            <span class="tv tv2">卫视推荐</span>
+                        </div>
+                        <!-- 进度条 -->
+                        <div class="process">
+                            <div class="processChild" style="width: 20%;"></div>
+                        </div>
+                        <div class="ulList">
+                            <ul class="clearfix ul1">
+                                <li class="w1">48%</li>
+                                <li class="w2">$ 123</li>
+                                <li class="w1">123</li>
+                                <li class="w1">123</li>
+                            </ul>
+                            <ul class="clearfix">
+                                <li class="w1">进度</li>
+                                <li class="w2">支持金额
+                                </li>
+                                <li class="w1">支持者
+                                </li>
+                                <li class="w1">剩余天数</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="tvItem">
+                    <img src="static/app/images/tvlist.jpg" alt="">
+                    <div class="itemInfo">
+                        <h1 class="infoH1">《晚秋》再现江湖</h1>
+                        <h4 class="infoH4">by 蓝宝公司劳斯莱斯</h4>
+                        <p class="infoP">超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司</p>
+                        <div>
+                            <span class="tv tv1">话剧</span>
+                            <span class="tv tv2">卫视推荐</span>
+                        </div>
+                        <!-- 进度条 -->
+                        <div class="process">
+                            <div class="processChild" style="width: 20%;"></div>
+                        </div>
+                        <div class="ulList">
+                            <ul class="clearfix ul1">
+                                <li class="w1">48%</li>
+                                <li class="w2">$ 123</li>
+                                <li class="w1">123</li>
+                                <li class="w1">123</li>
+                            </ul>
+                            <ul class="clearfix">
+                                <li class="w1">进度</li>
+                                <li class="w2">支持金额
+                                </li>
+                                <li class="w1">支持者
+                                </li>
+                                <li class="w1">剩余天数</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="tvItem">
+                    <img src="static/app/images/tvlist.jpg" alt="">
+                    <div class="itemInfo">
+                        <h1 class="infoH1">《晚秋》再现江湖</h1>
+                        <h4 class="infoH4">by 蓝宝公司劳斯莱斯</h4>
+                        <p class="infoP">超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司</p>
+                        <div>
+                            <span class="tv tv1">话剧</span>
+                            <span class="tv tv2">卫视推荐</span>
+                        </div>
+                        <!-- 进度条 -->
+                        <div class="process">
+                            <div class="processChild" style="width: 20%;"></div>
+                        </div>
+                        <div class="ulList">
+                            <ul class="clearfix ul1">
+                                <li class="w1">48%</li>
+                                <li class="w2">$ 123</li>
+                                <li class="w1">123</li>
+                                <li class="w1">123</li>
+                            </ul>
+                            <ul class="clearfix">
+                                <li class="w1">进度</li>
+                                <li class="w2">支持金额
+                                </li>
+                                <li class="w1">支持者
+                                </li>
+                                <li class="w1">剩余天数</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="tvItem">
+                    <img src="static/app/images/tvlist.jpg" alt="">
+                    <div class="itemInfo">
+                        <h1 class="infoH1">《晚秋》再现江湖</h1>
+                        <h4 class="infoH4">by 蓝宝公司劳斯莱斯</h4>
+                        <p class="infoP">超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司</p>
+                        <div>
+                            <span class="tv tv1">话剧</span>
+                            <span class="tv tv2">卫视推荐</span>
+                        </div>
+                        <!-- 进度条 -->
+                        <div class="process">
+                            <div class="processChild" style="width: 20%;"></div>
+                        </div>
+                        <div class="ulList">
+                            <ul class="clearfix ul1">
+                                <li class="w1">48%</li>
+                                <li class="w2">$ 123</li>
+                                <li class="w1">123</li>
+                                <li class="w1">123</li>
+                            </ul>
+                            <ul class="clearfix">
+                                <li class="w1">进度</li>
+                                <li class="w2">支持金额
+                                </li>
+                                <li class="w1">支持者
+                                </li>
+                                <li class="w1">剩余天数</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
