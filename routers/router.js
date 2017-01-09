@@ -1,6 +1,8 @@
 var routerModels = {
 	router : require('../controller/router'),
-	user: require('../controller/user')
+	user: require('../controller/user'),
+	qmgj: require('../controller/qmgj'),
+	other: require('../controller/other')
 };
 module.exports = function (app){
 	for (var module in routerModels) {

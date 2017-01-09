@@ -1,4 +1,4 @@
-var fs = require('fs'),
+﻿var fs = require('fs'),
     gulp = require("gulp"),
     gulpLoadPlugins = require('gulp-load-plugins'),
     plugins = gulpLoadPlugins();
@@ -8,9 +8,11 @@ var serverPath = './static/',//服务器资源路径
     staticDir = 'static/app/',//静态资源根目录
     lessFiles = [staticDir + 'less/global.less',staticDir + 'less/*.less'],//less文件路径
     hashFiles = staticDir + '**/*.min',//hash处理文件 hashFiles+".js"
+    htmlFiles = staticDir + '/view/*.html',
     htmlDir = './static/app/index.html',//页面基础路径
     jsArr = [
         "static/app/config/config.js",
+        "static/app/config/config2.js",
         "static/app/controller/**/*.js"
     ],
     local = 'http://localhost:3000/User';
@@ -23,12 +25,17 @@ gulp.task('look', function () {
         open: local
     });
     gulp.watch(lessFiles, ['less-min']);
-    gulp.watch([jsArr], ['js-min']);
+    gulp.watch([jsArr], ['js-watch']);
+    gulp.watch([htmlFiles],['html-watch']);
 });
 gulp.task('js-watch',['js-min'],function(done){
     browserSync.reload();
     done();
 });
+gulp.task('html-watch',function(done){
+    browserSync.reload();
+    done();
+})
 gulp.task('less-min',function(){
     var onError = function(err) {
         plugins.notify.onError({
@@ -64,12 +71,12 @@ gulp.task('less-min',function(){
 
 gulp.task("js-min",function(){
    return gulp.src(jsArr)
-        // .pipe(plugins.uglify({
-        //     mangle: true,
-        //     compress: {
-        //         drop_console: true
-        //     }
-        // }))
+        .pipe(plugins.uglify({
+            mangle: true,
+            compress: {
+                drop_console: true
+            }
+        }))
         .pipe(plugins.concat("app.min.js"))
         .pipe(gulp.dest("static/app/"));
 });
@@ -81,6 +88,3 @@ gulp.task("clean",function(){
 gulp.task('min',["clean"],function(){
     gulp.run('less-min','js-min');
 });
-
-
-

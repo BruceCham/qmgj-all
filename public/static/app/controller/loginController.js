@@ -1,7 +1,6 @@
-appUnlogin.controller('loginController',['$scope','$http',function($scope,$http){
-	$scope.userLogin = function(){
-		if( $scope.loginForm.$valid ){
-			// post请求
+app.controller('loginController', ['$scope','$http','$state','$stateParams', function($scope,$http,$state,$stateParams){
+	$scope.loginClick = function(){
+		if( $scope.myform.$valid ){
 			$http({
 				url: '/user/login',
 				method: 'post',
@@ -9,11 +8,14 @@ appUnlogin.controller('loginController',['$scope','$http',function($scope,$http)
 					phone: $scope.phone,
 					password: $scope.pwd
 				}
-			}).success(function(res){
-				if( res.resultCode == '0000' ){
-					location.reload()
+			}).then(function(res){
+				if(res.data.resultCode == '0000'){
+					alert('登录成功');
+					location.reload();
+				}else{
+					alert( res.data.resultMsg );
 				}
-			});
+			})
 		}
 	}
-}]);
+}])

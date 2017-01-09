@@ -1,6 +1,6 @@
 var crypto = require('crypto'),
     UserEntity = require('../models/User').UserEntity;
-
+var Procare = require('../json/procare.json');
 module.exports = function(app) {
     /**
      * post方式 注册
@@ -72,7 +72,6 @@ module.exports = function(app) {
      */
     app.post('/user/login', checkNotLogin);
     app.post('/user/login', function(req, res) {
-    	console.log('+++++++++++++++++++++++++++++++++++++++')
         var md5 = crypto.createHash('md5'),
             phone = req.body.phone,
             password = md5.update(req.body.password).digest('hex');
@@ -93,7 +92,7 @@ module.exports = function(app) {
             }
             req.session.user = user;
             res.send({
-            	"resultCode": "0000",
+                "resultCode": "0000",
                 "result": {
                     username: user.name
                 },
@@ -101,29 +100,6 @@ module.exports = function(app) {
             });
             UserEntity.update({_id:user._id},{$set: {lastLoginTime: new Date()}}).exec(); 
         });
-    });
-
-    // get 方式登陆
-    app.get('/user/login',function(req, res){
-        console.log( req.query );
-        var phone = req.query.phone;
-        var pwd = req.query.pwd;
-        if( phone === '18888888888' && pwd === '123456' ){
-            var user = {
-                phone: req.query.phone,
-                name: '土豪'
-            }
-            req.session.user = user;
-            res.send({
-                resultCode: '0000',
-                result: 'success login'
-            });
-        }else{
-            res.send({
-                resultCode: '0001',
-                result: 'error login'
-            });
-        }
     });
 
     /**
@@ -140,6 +116,83 @@ module.exports = function(app) {
         return;
     });
 
+    /**
+     * post方式 个人信息
+     */
+    app.post('/user/info',checkLogin);
+    app.post('/user/info',function(req,res){
+        var user = req.session.user;
+        res.send({
+            resultCode: '0000',
+            resultMsg: '返回成功',
+            result : {
+                "userImg": "static/app/images/userhead.png",  //用户头像
+                "username": user.name,
+                "serverTime": +new Date(),
+                "createTime": user.createTime,
+                "safe": parseInt( Math.random()*10 )%3+1,// 1低 2中 3高
+                "lastTime": user.lastLoginTime
+            }
+        })
+    });
+
+    /**
+     * 购买记录 post
+     */
+    app.post('/user/RecordList',checkLogin);
+    app.post('/user/RecordList',function(req, res){
+        var type = req.body.type || 0;
+        var page = req.body.page || 1;
+        var count = req.body.count || 5;
+        var imgArr = [
+            '/images/proj/20151214170904.jpg',
+            '/images/proj/20151215094703.jpg',
+            '/images/proj/20151214170904.jpg',
+            '/images/proj/20151211104100.jpg'
+        ];
+        var nameArr = [
+            '触电来袭：互动演出鬼吹灯',
+            '《犹太人在郑州》',
+            '史上最高颜值天团等你来加油',
+            '《未来十年》电影众筹'
+        ];
+        var fnameArr = [
+            '万娱引力',
+            '上海传媒',
+            '人人娱乐',
+            '万万没想到'
+        ];
+        var list = [];
+        for(var i=0;i<count;i++){
+            list.push({
+                "oid": "6",
+                "rprice": parseInt( Math.random()*1000000 ),
+                "status": type==0?parseInt(Math.random()*10)%2:(type-1),
+                "id": parseInt( Math.random()*100 )%4,
+                "fname": fnameArr[parseInt( Math.random()*100 )%4],
+                "name": nameArr[parseInt( Math.random()*100 )%4],
+                "img": imgArr[parseInt( Math.random()*100 )%4]
+            })
+        }
+        return res.send({
+            resultCode : '0000',
+            resultMsg  : '返回成功',
+            result: {
+                count: 150,
+                countpage: page,
+                list: list
+            }
+        });
+    });
+    // 个人主页
+    app.get('/user/pros',checkLogin);
+    app.get('/user/pros',function(req,res){
+        res.send({
+            resultCode: '0000',
+            resultMsg: '返回成功',
+            result: Procare
+        })
+    })
     function checkLogin(req, res, next) {
         if (!req.session.user) {
             //用户还未登陆

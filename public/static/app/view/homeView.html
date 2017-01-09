@@ -1,0 +1,109 @@
+<!-- class规范 -->
+<!-- p 代表业务页面 -->
+<!-- g 代表多业务公用 -->
+<div class="qmgj-p-home">
+    <!-- 轮播图 -->
+    <div class="home-slide">
+        <!-- ng-show="$index==showIndex" -->
+        <img ng-repeat="item in slideData" ng-style="{display:$index!=showIndex?'none':''}" ng-src="{{item.img}}">
+        <div class="slide-pointer">
+            <span ng-repeat="obj in slideData" ng-class="{active: $index==showIndex}" ng-mouseenter="pauseSlide($index)" ng-mouseleave="playSlide()"></span>
+        </div>
+    </div>
+    <!-- 热门项目 -->
+    <div class="hot-box clearfix">
+        <!-- 左侧内容 -->
+        <section class="box-left">
+            <!-- 左侧title -->
+            <div class="left-title clearfix">
+                <h1>热门项目</h1>
+                <a ui-sref="list">查看更多</a>
+            </div>
+            <!-- 左侧主体 -->
+            <div class="box-content clearfix">
+                <img class="hot-img" ng-src="{{hotItem.img}}" alt="">
+                <div class="hot-info">
+                    <h1>{{hotItem.name}}</h1>
+                    <h3 class="hot-h3">by {{hotItem.fname}}</h3>
+                    <p class="hot-p">{{hotItem.desc}}</p>
+                    <div><span class="qmgj-g-sprite sprite-mark">{{hotNav[hotItem.cid]}}</span><span class="qmgj-g-sprite sprite-tv">卫视推荐</span></div>
+                    <!-- 进度条 -->
+                    <div class="process-box">
+                        <div class="process" style="width: {{hotItem.sp}}%"></div>
+                    </div>
+                    <!-- 信息 -->
+                    <ul class="info-box clearfix">
+                        <li>
+                            <h1>{{hotItem.sp}}%</h1>
+                            <p>进度</p>
+                        </li>
+                        <li>
+                            <h1>{{hotItem.rprice | currency: '￥'}}</h1>
+                            <p>支持金额</p>
+                        </li>
+                        <li>
+                            <h1>{{hotItem.rnum}}</h1>
+                            <p>支持者</p>
+                        </li>
+                        <li>
+                            <h1>{{hotItem.rday}}</h1>
+                            <p>剩余天数</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!-- 右侧导航 -->
+        <ul class="box-right">
+            <li ng-repeat="item in hotData" ng-class="{active: hotIndex == $index}" ng-click="showHotItem($index)">{{hotNav[item.cid]}}</li>
+        </ul>
+    </div>
+    <!-- 卫视主推 -->
+    <div class="tv-box">
+        <div class="tv-title">
+            <h1>卫视主推</h1>
+            <a ui-sref="list">查看全部</a>
+        </div>
+        <ul class="tv-content clearfix">
+            <li ng-repeat="item in tvData">
+                <div class="tv-item">
+                    <img ng-src="{{item.img}}" alt="">
+                    <div class="tv-info">
+                        <h1>{{item.name}}</h1>
+                        <h3 class="hot-h3">by {{item.fname}}</h3>
+                        <p class="hot-p">{{item.desc | substr: 45}}...</p>
+                        <div><span class="qmgj-g-sprite sprite-mark">{{hotNav[item.cid]}}</span><span class="qmgj-g-sprite sprite-tv">卫视推荐</span></div>
+                        <!-- 进度条 -->
+                        <div class="process-box">
+                            <div class="process" style="width: {{item.sp}}%"></div>
+                        </div>
+                        <!-- 信息 -->
+                        <ul class="info-box clearfix">
+                            <li>
+                                <h1>{{item.sp}}%</h1>
+                                <p>进度</p>
+                            </li>
+                            <li>
+                                <h1>{{item.rprice | currency: '￥'}}</h1>
+                                <p>支持金额</p>
+                            </li>
+                            <li>
+                                <h1>{{item.rday}}</h1>
+                                <p>剩余天数</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!-- 合作单位 -->
+    <div class="unit-box">
+    	<h1>合作单位</h1>
+    	<ul class="clearfix">
+    		<li ng-repeat="item in unitData">
+    			<a ng-href="{{item.url}}"><img ng-src="{{item.img}}" alt=""></a>
+    		</li>
+    	</ul>
+    </div>
+</div>

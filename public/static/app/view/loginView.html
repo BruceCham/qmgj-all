@@ -1,0 +1,41 @@
+<div class="qmgj-p-login">
+	<div class="login-box">
+		<div class="form-box">
+			<h1 class="form-type">登录</h1>
+			<form ng-model="myform" name="myform" novalidate autocomplete="off">
+				<div class="form-item">
+					<input ng-model="phone" name="phone" type="text" placeholder="请输入您的手机号" required ng-pattern="/^(1[345678]\d{9})$/g">
+					<div class="form-error" ng-show="myform.phone.$dirty && myform.phone.$invalid">您输入的号码有误，请检查</div>
+				</div>
+
+				<div class="form-item">
+					<input type="password" ng-model="pwd" name="pwd" placeholder="请输入密码" required ng-minlength="6">
+					<div class="form-error" ng-show="myform.pwd.$dirty && myform.pwd.$invalid">请输入六位以上密码</div>
+					<div class="form-pwd"><a href="#">忘记密码?</a></div>
+				</div>
+
+				<div class="form-btn" ng-class="{active: myform.$valid}" ng-click="loginClick()">登录</div>
+
+				<div class="form-choice clearfix">
+					<div class="form-img"></div>
+					<span>记住我</span>
+				</div>
+				
+				<div class="form-three">
+					<h1 class="form-t-title">
+						<div>第三方登录</div>
+					</h1>
+					<div class="form-t-icon">
+						<span class="icon icon-weixin"></span>
+						<span class="icon icon-qq"></span>
+						<span class="icon icon-sina"></span>
+					</div>
+				</div>
+
+			</form>
+		</div>
+		<div class="form-footer">
+			<span>新用户？<a>立即注册</a></span>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,43 @@
+<div class="qmgj-p-vip">
+    <!-- 头像区 -->
+    <section class="user-box">
+        <div class="user-group clearfix">
+            <!-- 头像 -->
+            <div class="img-item">
+                <img alt="" ng-src="{{userinfo.userImg}}">
+                <div class="sprite-box">
+                    <span class="sprite-phone"></span>
+                    <span class="sprite-msg"></span>
+                    <span class="sprite-img"></span>
+                </div>
+            </div>
+            <!-- 信息 -->
+            <div class="info-item">
+                <h1>{{userinfo.username}}<span>{{userinfo.serverTime | getMoon}}好！</span></h1>
+                <div class="clearfix safe-box">
+                    <div class="safe-box1">账户安全等级：</div>
+                    <div class="safe-box2">
+                        <div style="width:{{['--','33%','66%','100%'][userinfo.safe]}}"></div>
+                    </div>
+                    <div class="safe-box3">{{['--','低','中','高'][userinfo.safe]}}</div>
+                </div>
+                <p>上次登录时间：{{userinfo.lastTime | date: 'yyyy-MM-dd HH:mm:ss'}}</p>
+            </div>
+        </div>
+    </section>
+    <!-- 个人信息展示 -->
+    <section class="user-section clearfix">
+    	<!-- 左侧导航 -->
+    	<div class="user-nav">
+    		<ul>
+    			<li><a ui-sref="vip.main" ui-sref-active="active">个人主页</a></li>
+    			<li><a ui-sref="vip.info" ui-sref-active="active">个人信息</a></li>
+    			<li><a>安全设置</a></li>
+    			<li><a>关注的圈子</a></li>
+    			<li><a ui-sref="vip.record" ui-sref-active="active">购买记录</a></li>
+    		</ul>
+    	</div>
+    	<!-- 右侧显示  嵌套视图-->
+    	<div ui-view class="user-right-section"></div>
+    </section>
+</div>

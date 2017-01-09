@@ -6,21 +6,25 @@ html(ng-app="qmgj_login")
     link(rel="stylesheet",href="static/app/app.min.css")
     script(src="static/app/bower_components/angular/angular.js")
     script(src="static/app/bower_components/angular-ui-router/release/angular-ui-router.js")
+    script(src="static/app/ui-bootstrap-custom-2.4.0.js")
+    script(src="static/app/ui-bootstrap-custom-tpls-2.4.0.js")
     script(src="static/app/app.min.js")
   body
     header
-      div.header-box.fn-clear(ng-controller="userController")
+      div.header-box.fn-clear
         ul.fn-clear
           li.logoBox
             span.cl1 全民
             span.cl2 共进
-          a(ui-sref="home")
-            li.active.nav(ui-sref-active="active") 首页
-          li.nav 节目专栏
-          li.nav 圈子
-          li.search
-            input(placeholder="请输入查找内容")
-        div.loginBox
+          a(ui-sref="home" ui-sref-active="active")
+            li.nav 首页
+          a
+            li.nav 节目专栏
+          a
+            li.nav 圈子
+          li.search(ng-controller="searchController")
+            input(placeholder="请输入查找内容" ng-keyup="myKeyUp($event)")
+        div.loginBox(ng-controller="logoutController")
           a(ui-sref="vip.main")= username
           a(ng-click="userLogout()") 退出
     div(ui-view)

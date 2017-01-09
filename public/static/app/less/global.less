@@ -56,11 +56,12 @@ ul,ol {
 
 a {
     color: #0087e3;
+    cursor: pointer;
     text-decoration: none
 }
 
 a:hover {
-    text-decoration: underline
+    text-decoration: none
 }
 
 img {
@@ -150,3 +151,105 @@ audio,canvas,video {
     box-sizing: border-box
 }
 
+/*页面头部*/
+header {
+    border-bottom: 1px solid #dadadb;
+    .header-box {
+        width: 1200px;
+        margin: 0 auto;
+        line-height: 70px;
+    }
+}
+
+header ul {
+    float: left;
+}
+
+header ul li {
+    float: left;
+    padding: 0 30px;
+    color: #828282;
+}
+
+header ul li.nav:hover,
+header ul a.active>li{
+    background: #f4f7f7
+}
+
+header .loginBox {
+    float: right;
+    padding: 0 20px;
+}
+
+.loginBox a {
+    padding: 0 10px;
+    color: #ff4305;
+}
+
+header .logoBox {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+header .logoBox .cl1 {
+    color: #130b06;
+}
+
+header .logoBox .cl2 {
+    color: #ff4103;
+}
+
+.search input {
+    padding-left: 30px;
+    border: 0;
+    background: url(images/sprite-list.png);
+    background-position: 0 -1542px;
+}
+
+input:focus {
+    outline: 0
+}
+footer {
+    width: 100%;
+    background: #150d08;
+}
+
+footer .navList {
+    width: 1040px;
+    margin: 0 auto;
+    height: 100px;
+    line-height: 100px;
+    color: #828788;
+}
+
+footer .navleft {
+    float: left;
+}
+
+footer .navleft span:hover {
+    color: #ff4007;
+    cursor: pointer;
+}
+
+footer .navright {
+    float: right;
+}
+
+footer .navcl1 {
+    font-size: 24px;
+    color: #fff;
+}
+
+footer .navcl2 {
+    font-size: 24px;
+    color: #ff4302
+}
+.qmgj-g-sprite{
+    background: url(images/sprite-list.png);
+}
+.sprite-mark{
+    background-position: 0 -1868px;
+}
+.sprite-tv{
+    background-position: 0 -1934px;
+}

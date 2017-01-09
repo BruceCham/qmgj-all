@@ -1,52 +1,69 @@
-function listControllerFn($scope, $http) {
-    $scope.proTypes = [];
-    $scope.proState = [];
-    $scope.proTime = [];
-    // 需要展示的项目数据
-    $scope.proDatas = [];
-    $scope.choiceType = 0; // 项目类型 微电影、电影……
-    $scope.choiceState = 0; // 项目状态 筹资中……
-    $scope.choiceTime = 0; // 项目进展 最新 结束 热门
-    $scope.curPage = 1; // 当前是第几页的数据
-    $scope.countPage = 6; // 每页面显示多少条数据 
+app.controller('listController', ['$scope', '$http', '$stateParams', myListController]);
+app2.controller('listController', ['$scope', '$http', '$stateParams', myListController]);
 
-    httpForData();
-    $scope.filterData = function(e, i) {
-        // filterData($event)
-        // 转化为 jqlite 对象，jqlite与jquery极为相似 
-        var $el = angular.element(e.target);
-        var type = $el.attr('data');
-        if (i == 0) {
-            $scope.choiceType = type;
-        } else if (i == 1) {
-            $scope.choiceState = type;
-        } else if (i == 2) {
-            $scope.choiceTime = type;
-        }
-        httpForData();
-    }
-    function httpForData() {
-        $http({
-            url: 'static/app/json/listData.json',
-            params: {
-                choiceType: $scope.choiceType,
-                choiceState: $scope.choiceState,
-                choiceTime: $scope.choiceTime,
-                curPage: $scope.curPage,
-                countPage: $scope.countPage
+function myListController($scope, $http, $stateParams) {
+    var arr = ['全部', '微电影', '电视剧', '话剧', '电影', '戏曲', '书画', '相声', '戏剧', '音乐剧', '其它'];
+    $scope.arr = arr;
+    var prolist = {
+        init: function() {
+            var that = this;
+            $scope.cid = 0;
+            $scope.status = 0;
+            $scope.timeStatus = 0;
+            $scope.countAll = 0; // pagations 翻页插件
+            $scope.keyword = '';
+            $scope.count = 9; // 每页多少条数据
+            $scope.page = 1; // 默认第一页
+            if( $stateParams.keyword != undefined ){
+            	$scope.keyword = $stateParams.keyword;
             }
-        }).success(function(res) {
-            $scope.proTypes = res.result.proTypes;
-            $scope.proState = res.result.proState;
-            $scope.proTime = res.result.proTime;
-            $scope.choiceType = res.result.choiceType;
-            $scope.choiceState = res.result.choiceState;
-            $scope.choiceTime = res.result.choiceTime;
-            $scope.proDatas = res.result.data;
-            $scope.curPage = 1;
-            $scope.countPage = 6;
-        })
+            that.events();
+            that.getListData();
+        },
+        events: function() {
+            var that = this;
+            $scope.pageChanged = function() {
+                that.getListData();
+            }
+            $scope.changeType = function(index) {
+                $scope.cid = index;
+                $scope.page = 1;
+                that.getListData();
+            }
+            $scope.changeStatus = function( index ){
+            	$scope.status = index;
+            	$scope.page = 1;
+            	that.getListData();
+            }
+            $scope.checkTimeStatus = function( index ){
+            	$scope.timeStatus = index;
+            	$scope.page = 1;
+            	that.getListData();
+            }
+        },
+        getListData: function() {
+            $http({
+                url: '/prolist',
+                method: 'get',
+                params: {
+                    keyword: $scope.keyword,
+                    cid: $scope.cid,
+                    status: $scope.status,
+                    timeStatus: $scope.timeStatus,
+                    page: $scope.page,
+                    count: $scope.count
+                }
+            }).then(function(res) {
+                if (res.data.resultCode == '0000') {
+                    var result = res.data.result;
+                    $scope.countAll = result.countAll;
+                    $scope.count = result.count;
+                    $scope.listData = result.list;
+                } else {
+                    alert(res.data.resultMsg);
+                }
+            })
+        }
     }
+    prolist.init();
 }
-appLogin.controller('listController', ['$scope', '$http', listControllerFn]);
-appUnlogin.controller('listController', ['$scope', '$http', listControllerFn]);

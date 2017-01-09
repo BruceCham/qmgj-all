@@ -1,0 +1,193 @@
+### 所有接口返回结构
+```txt
+	{
+		resultCode: '0000',
+		resultMsg: '返回的信息',
+		result: // 数据
+	}
+	resultCode 为 0000时，代表正常返回，数据在result中
+	resultCode 非 0000时，代表返回异常，把resultMsg抛出
+```
+### 登录页面 提交登录信息
+```txt
+	接口地址 post方式
+		/user/login
+	入参
+		phone
+		password
+	返回
+		{
+			resultCode: '0000'
+			resultMsg: '返回成功'
+			result:[]
+		}
+```
+### 注册页面 提交注册信息
+```txt
+	接口地址 post方式
+		/user/reg	
+	入参
+		name
+		phone
+		password
+		passwordRepeat
+	返回
+		{
+			resultCode: '0000'
+			resultMsg: '返回成功'
+			result:[]
+		}
+```
+### 官网首页 轮播图信息+热门项目+卫视主推+合作单位
+```txt
+	接口地址	get方式
+		/IndexInfo
+	入参
+		无
+	返回
+		result: {
+		    slides: [{
+		      "id": "1",
+		      "name": "犹太人在上海",
+		      "img": "/images/slide/1.jpg"
+		    }],
+		    hot: [{
+		        "id": "5",// 对应的id
+		        "name": "史上最高颜值天团等你来加油",
+		        "img": "/images/proj/20151215094703.jpg",
+		        "desc": "超模明星足球队授权电影制作公司",
+		        "fname": "人人娱乐",
+		        "cid": "1", // ['全部','微电影','电视剧','话剧','电影','戏曲','书画','相声','戏剧','音乐剧']
+		        "placement": "5000",
+		        "onlinetime": "2015-12-15 09:00:00",
+		        "sp": "90",// 进度
+		        "rprice": "4540",// 已支持金额
+		        "rnum": "4540",// 已支持人数
+		        "rday": "0" // 剩余天数
+		    }],
+		    new: [{
+		      "id": "5",
+		      "name": "史上最高颜值天团等你来加油",
+		      "img": "/images/proj/20151215094703.jpg",
+		      "desc": "超模明星足球队授权电影制作公司",
+		      "fname": "人人娱乐",
+		      "cid": "1",
+		      "placement": "5000",
+		      "onlinetime": "2015-12-15 09:00:00",
+		      "sp": "90",
+		      "rprice": "4540",
+		      "rnum": "4540",
+		      "rday": "0"
+		    }],
+		    unit: [{
+		      "id": "6",
+		      "name": "腾讯视频",
+		      "img": "/images/proj/anhuitv.jpg",
+		      "url": "http://v.qq.com/"
+		    }]
+		}
+```
+### 列表页 获取列表数据
+```txt
+	接口地址
+		/prolist
+	方式
+		get请求
+	入参
+		{
+			keyword: ''// 关键字搜索， 选填
+			cid: 0 // 数组下标 ['全部','微电影','电视剧','话剧','电影','戏曲','书画','相声','戏剧','音乐剧','其它']
+			status: 0 // 0 筹资中  1已结束  2成功
+			timeStatus: 0// 0最新  1热门  2结束时间
+			page: 1 	// 第1页数据  默认第1页
+			count: 9	// 一页9条数据
+		}
+
+	返回
+		{
+			resultCode: '0000',
+			resultMsg: '返回成功',
+			result: {
+				page: 1// 当前为第1页
+				count: 9 // 每页9条数据
+				countAll: 100 //总数据量
+				list: [{
+					"cid": 0,// 类型 微电影
+	                "rprice": 123455,// 支持金额
+	                "sp": 48,// 进度
+	                "rday": //剩余天数
+	                "desc": ''// 描述信息
+	                "id": 5,
+	                "fname": '人人娱乐',
+	                "name": '《犹太人在上海》',
+	                "img": '图片地址'
+				}]
+			}
+		}
+```
+### 个人信息 
+```txt
+	接口地址 post 请求
+		/user/info
+	入参
+		无
+	返回
+		result : {
+			"userImg": "static/app/images/userhead.png",  //用户头像
+			"username": "全民共进",// 用户名
+			"serverTime": "1476084813000",// 服务器当前时间
+			"safe": 3,// 1低 2中 3高
+			"lastTime": "1477472278635" // 上次登录时间
+		}
+```
+### 个人主页 获取数据
+```txt
+	接口地址	get方式
+		/user/pros
+	入参
+		无
+	返回
+		result : {
+			procare: [{
+		        "img": "static/app/images/infoimg.jpg",
+		        "name": "《犹太人在上海》",
+		        "fname": "中国星",
+		        "sp": "56",
+		        "rprice": "12345"
+		    }],
+			prohot: [{
+	    		"img": "static/app/images/tvlist.jpg",
+	    		"name": "《犹太人在上海》",
+	    		"desc": "犹太人在上海犹太人在上海犹太人在上海犹太人在上海犹太人在上海犹太人在上海犹太人在上海犹太人在上海犹太人在上海",
+	    		"sp": "45",
+	    		"rprice": "2345767",
+	    		"rday": "234"
+	    	}]
+		}
+```
+### 购买记录 获取数据
+```txt
+	接口地址 post请求
+		/user/RecordList
+	入参
+		{
+			type: 0,// 0全部	1未支付 	2已支付 
+			page: 1,// 第几页数据
+			count: 6// 每页6条数据
+		}
+	返回
+		result: {
+			page: 1// 当前为第1页
+			count: 9 // 每页9条数据
+			countAll: 100 //总数据量
+			list: [{
+				"oid": "61e1r341",// 订单号
+                "rprice": 123312,
+                "status": 0,// 0全部	1未支付 	2已支付 
+                "id": 5,
+                "fname": '人人娱乐',
+                "name": '《犹太人在上海》',
+                "img": '/images/proj/20151211104100.jpg'
+			}]
+		}
+```

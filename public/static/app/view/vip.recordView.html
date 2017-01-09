@@ -1,0 +1,40 @@
+<div class="vip-p-record">
+	<ul class="record-nav clearfix">
+		<li ng-class="{active: type == $index}" ng-repeat="tn in ['全部','未支付','已支付']" ng-click="changeType($index)">{{tn}}</li>
+	</ul>
+	<div class="record-content">
+		<ul class="content-header clearfix">
+			<li class="li1 pl50">项目信息</li>
+			<li class="li2">实付款(元)</li>
+			<li class="li3">交易状态</li>
+			<li class="li4">操作</li>
+		</ul>
+
+		<div class="content-box">
+
+			<ul ng-repeat="item in recordData" class="content-item clearfix">
+				<li class="li1 clearfix">
+					<img ng-src="{{item.img}}" alt="">
+					<div class="item-info">
+						<h1>{{item.name}}</h1>
+						<h3>by {{item.fname}}</h3>
+						<p>订单号：{{item.oid}}</p>
+					</div>
+				</li>
+
+				<li class="li2">{{item.rprice | currency:'￥'}}</li>
+				<li class="li3">{{ ['未支付','已支付'][item.status] }}</li>
+
+				<li class="li4" ng-class="{pay: item.status==0}">
+					<div class="pay-btn">立即支付</div>
+					<a href="#">交易详情</a>
+					<a href="#">删除</a>
+				</li>
+			</ul>
+
+		</div>
+
+		<ul uib-pagination items-per-page="count" total-items="countAll"  ng-model="page" max-size="maxSize" boundary-links="true" ng-change="pageChanged()"></ul>
+		
+	</div>
+</div>

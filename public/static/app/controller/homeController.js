@@ -1,79 +1,66 @@
-function homeControllerFn($scope, $interval) {
-    $scope.slideImg = [{
-        proImg: 'static/app/images/slide1.jpg',
-        proId: '1'
-    }, {
-        proImg: 'static/app/images/slide2.jpg',
-        proId: '2'
-    }];
-    $scope.showIndex = 0;
-    var inter = $interval(function() {
-        if ($scope.showIndex >= $scope.slideImg.length - 1) {
-            $scope.showIndex = 0;
-            return;
-        }
-        $scope.showIndex++;
-    }, 3500);
-
-    $scope.showCurrentFn = function(i) {
-            $scope.showIndex = i;
-            // 销毁定时器
-            $interval.cancel(inter);
-            // 重新定义定时器
-            inter = $interval(function() {
-                if ($scope.showIndex >= $scope.slideImg.length - 1) {
-                    $scope.showIndex = 0;
-                    return;
+app.controller('homeController', ['$scope', '$http', '$interval', myHomeController]);
+app2.controller('homeController', ['$scope', '$http', '$interval', myHomeController]);
+function myHomeController($scope, $http, $interval) {
+    $scope.hotNav =  ['','微电影','电视剧','话剧','电影','戏曲','书画','相声','戏剧','音乐剧'];
+    var HomePage = {
+        init: function() {
+            var that = this;
+            $http({
+                url: '/IndexInfo',
+                method: 'get'
+            }).then(function(res) {
+                if (res.data.resultCode == '0000') {
+                    // 轮播图数据
+                    that.dealSlide( res.data.result.slides );
+                    // 处理热门推荐
+                    that.dealHot( res.data.result.hot );
+                    // 卫视主推
+                    that.dealTV( res.data.result.new );
+                    // 合并单位
+                    that.dealUnit( res.data.result.unit );
+                } else {
+                    alert(res.data.resultMsg)
                 }
+            })
+        },
+        dealSlide: function(slideData) {
+            $scope.slideData = slideData;
+            $scope.showIndex = 0;
+            var inter = $interval(function() {
                 $scope.showIndex++;
-            }, 3500);
-        }
-        /*
-        ['微电影','话剧','电影']
-         */
-    var hotPro = [{
-        imgSrc: 'static/app/images/hot1.jpg',
-        proName: '《晚秋》再现江湖',
-        proCon: '蓝宝公司劳斯莱斯',
-        proInfo: '超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司',
-        proType: 1,
-        proProcess: '46%',
-        proMoney: '1234',
-        proPeople: '123',
-        proDays: '12'
-    }, {
-        imgSrc: 'static/app/images/hot1.jpg',
-        proName: '《封神传奇》再现江湖',
-        proCon: '中国星',
-        proInfo: '超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司',
-        proType: 2,
-        proProcess: '12%',
-        proMoney: '3789',
-        proPeople: '323',
-        proDays: '22'
-    }, {
-        imgSrc: 'static/app/images/hot1.jpg',
-        proName: '《超脑特工》再现江湖',
-        proCon: '东印度',
-        proInfo: '超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司超模明星足球队授权电影制作公司',
-        proType: 0,
-        proProcess: '50%',
-        proMoney: '1423',
-        proPeople: '1223',
-        proDays: '5'
-    }];
-    $scope.prosType = ['微电影', '话剧', '电影'];
-    $scope.showPro = hotPro[1];
-    $scope.showProIndex = $scope.showPro.proType;
-    $scope.showProFn = function(i) {
-        $scope.showProIndex = i;
-        for (var j = 0; j < hotPro.length; j++) {
-            if (hotPro[j].proType == i) {
-                $scope.showPro = hotPro[j];
-                break;
+                if ($scope.showIndex == $scope.slideData.length) {
+                    $scope.showIndex = 0;
+                }
+            }, 1500);
+            $scope.pauseSlide = function(index) {
+                $interval.cancel(inter);
+                $scope.showIndex = index;
             }
+            $scope.playSlide = function() {
+                inter = $interval(function() {
+                    $scope.showIndex++;
+                    if ($scope.showIndex == $scope.slideData.length) {
+                        $scope.showIndex = 0;
+                    }
+                }, 1500);
+            }
+        },
+        dealHot: function( hotData ){
+            $scope.hotData = hotData;
+            $scope.hotItem = hotData[0];
+            $scope.hotIndex = 0;
+            $scope.showHotItem = function(index){
+                $scope.hotIndex = index;
+                $scope.hotItem = hotData[index];
+            }
+        },
+        dealTV: function( tvData ){
+            $scope.tvData = tvData;
+        },
+        dealUnit: function(unitData){
+            $scope.unitData = unitData;
         }
-    }
+    };
+
+    HomePage.init();
 }
-appLogin.controller('homeController', ['$scope', '$interval', homeControllerFn]);
-appUnlogin.controller('homeController', ['$scope', '$interval', homeControllerFn]);

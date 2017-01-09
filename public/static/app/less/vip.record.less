@@ -1,0 +1,128 @@
+.vip-p-record{
+	background: #fff;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    padding: 30px 35px 15px;
+    margin-bottom: 15px;
+    .record-nav{
+    	>li{
+    		height: 45px;
+    		line-height: 45px;
+    		float: left;
+    		margin-right: 40px;
+    		font-weight: 700;
+    		font-size: 12px;
+    		color: #696969;
+    		border-bottom: 3px solid transparent;
+    		cursor: pointer;
+    		&.active,&:hover{
+    			color: #000;
+    			border-bottom: 3px solid #42affc;
+    		}
+    	}
+    }
+    .record-content{
+    	.li1{
+			width: 410px;
+			text-align: left;
+		}
+		.li2{
+			width: 145px;
+		}
+		.li3{
+			width: 135px;
+		}
+		.li4{
+			width: 95px;
+		}
+    	.content-header{
+    		background-color: #f5f5f2;
+    		border: 1px solid #efefef;
+    		>li{
+    			float: left;
+				line-height: 45px;
+				text-align: center;
+				color: #170e0c;
+				&.pl50{
+					padding-left: 50px;
+				}
+    		}
+    	}
+    	.content-box{
+    		.content-item{
+			    padding: 12px 0;
+			    border-bottom: 1px solid #e1e1e3;
+			    height: 120px;
+			    li{
+			    	float: left;
+			    	&.li1{
+			    		>img{
+			    			float: left;
+			    			display: block;
+							width: 160px;
+							height: 95px;
+							padding-right: 20px;
+			    		}
+			    		.item-info{
+			    			float: left;
+			    			padding: 10px 0;
+						    font-size: 12px;
+						    width: 180px;
+						    >h1{
+								font-size: 14px;
+								font-weight: 700;
+								color: #150b09;
+						    }
+						    >h3{
+						    	font-size: 12px;
+								overflow: hidden;
+							    text-overflow: ellipsis;
+							    white-space: nowrap;
+							    word-break: break-all;
+						    }
+						    >p{
+								margin: 10px 0;
+    							color: #150b09;
+						    }
+			    		}
+			    	}
+			    	&.li2,&.li3{
+			    		text-align: center;
+			    		line-height: 95px;
+					    color: #ff4200;
+					    font-weight: 700;
+					    font-size: 14px;
+			    	}
+			    	&.li4{
+			    		text-align: center;
+			    		padding-top: 30px;
+			    		>a{
+			    			display: block;
+			    			color: #41adf8;
+			    			line-height: 20px;
+			    			font-size: 12px;
+			    			text-decoration: none;
+			    		}
+			    		.pay-btn{
+			    			display: none;
+			    			cursor: pointer;
+			    			width: 70px;
+			    			margin: 0 auto;
+			    			text-align: center;
+							padding: 5px 0px;
+							background-color: #d63700;
+							color: #fff;
+							border-radius: 4px;		
+						}
+			    		&.pay{
+							padding-top: 10px;
+							.pay-btn{
+								display: block;
+							}
+			    		}
+			    	}
+			    }
+    		}
+    	}
+    }
+}

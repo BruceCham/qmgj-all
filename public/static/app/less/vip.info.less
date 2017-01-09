@@ -29,12 +29,43 @@
         }
         .info-item {
             float: left;
+            width: 690px;
             position: relative;
             .fileup {
                 width: 70px;
                 height: 70px;
                 background: url(images/sprite-list.png);
                 background-position: 0 0;
+            }
+            li.info-radio{
+                float: left;
+                padding-left: 18px;
+                padding-right: 15px;
+                background: url(images/sprite-list.png);
+                background-position: 0 -306px;
+                &.active{
+                    background-position: 0 -244px;
+                }
+            }
+            li.info-checkbox{
+                float: left;
+                padding-left: 20px;
+                width: 90px;
+                cursor: pointer;
+                background: url(images/sprite-list.png);
+                background-position: 0 -1476px;
+                &.active{
+                    background-position: 0 -1413px;
+                }
+            }
+            .info-btn{
+                width: 140px;
+                line-height: 45px;
+                text-align: center;
+                color: #fff;
+                background-color: #ff4300;
+                cursor: pointer;
+                border-radius: 4px;
             }
         }
     }
