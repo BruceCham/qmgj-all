@@ -90,6 +90,7 @@ module.exports = function(app) {
                     result: null
                 })
             }
+            user.lastLoginTime = new Date();
             req.session.user = user;
             res.send({
                 "resultCode": "0000",
@@ -98,7 +99,7 @@ module.exports = function(app) {
                 },
                 "resultMsg": "登陆成功"
             });
-            UserEntity.update({_id:user._id},{$set: {lastLoginTime: new Date()}}).exec(); 
+            UserEntity.update({_id:user._id},{$set: {lastLoginTime: user.lastLoginTime}}).exec(); 
         });
     });
 
