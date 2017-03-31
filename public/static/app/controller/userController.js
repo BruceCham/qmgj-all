@@ -1,4 +1,4 @@
-appLogin.controller('userController',['$scope','$http',function($scope,$http){
+app.controller('userController',['$scope','$http',function($scope,$http){
 	$scope.userLogout = function(){
 		$http({
 			url: '/user/logout'
