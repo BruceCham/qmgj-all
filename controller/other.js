@@ -1,3 +1,4 @@
+let querystring = require('querystring');
 module.exports = function(app) {
     // 爱心公益接口
     app.get('/GongYiInfo', function(req, res) {
